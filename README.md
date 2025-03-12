@@ -1,7 +1,7 @@
 
 # 📁 File Upload App
 
-A simple and efficient file upload application built using **.NET Web API** for the backend and **React** for the frontend. This project leverages **MongoDB GridFS** for storing uploaded files, including images and accompanying text. It provides APIs for uploading, fetching, and deleting files, and is thoroughly tested with **xUnit** for high code coverage.
+A simple and efficient file upload application built using **.NET Web API** for the backend and **React** for the frontend. This project leverages **MongoDB GridFS** for storing uploaded files, including images. It provides APIs for uploading, fetching, and deleting files, and is thoroughly tested with **xUnit** for high code coverage.
 
 ---
 
@@ -108,7 +108,7 @@ FileUploadSolution
 ## 📝 Usage
 
 1. Open the application in your browser.
-2. Upload an image with some text.
+2. Upload an image with.
 3. View the list of uploaded files.
 4. Click on a file to view its details.
 5. Delete unwanted files.
@@ -122,14 +122,4 @@ To run the xUnit tests for the backend:
 cd FileUploadAPI.Tests
 dotnet test
 ```
-Make sure you have a separate test database configured to avoid interfering with the production data.
 
----
-
-## 💡 Troubleshooting
-
-- **CORS Errors**: Ensure that CORS is enabled in `Program.cs`.
-- **Port Conflicts**: Change the ports in `launchSettings.json` if needed.
-- **MongoDB Connection Issues**: Make sure MongoDB is running and the connection string is correct.
-
----
