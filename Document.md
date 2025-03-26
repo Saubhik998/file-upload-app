@@ -1,19 +1,20 @@
-## **Setting Up Docker for My .NET Web API Application**  
-I containerized my **FileUploadAPI** by creating a **Dockerfile** and setting up **Docker Compose** to run both the API and MongoDB together.  
+## **Setting Up Docker for .NET Web API Application**  
+
+To containerize **FileUploadAPI**, a **Dockerfile** was created, and **Docker Compose** was set up to run both the API and MongoDB together.  
 
 ---
 
 ### **Step 1: Creating the Dockerfile**  
-I placed a `Dockerfile` inside my `FileUploadAPI` project to define how the application should be built and run in a container.  
+A `Dockerfile` was placed inside the `FileUploadAPI` project to define how the application should be built and run in a container.  
 
 - **Build Stage:** Uses the .NET SDK to restore dependencies and compile the project.  
 - **Runtime Stage:** Uses the .NET runtime to execute the compiled application.  
-- **Exposes Port 5000:** Ensures my API is accessible at `http://localhost:5000`.  
+- **Exposes Port 5000:** Ensures the API is accessible at `http://localhost:5000`.  
 
 ---
 
 ### **Step 2: Setting Up Docker Compose**  
-I created a `docker-compose.yml` file to define the services required for my application:  
+A `docker-compose.yml` file was created to define the services required for the application.  
 
 - **MongoDB Service:**  
   - Uses the official MongoDB image.  
@@ -23,14 +24,14 @@ I created a `docker-compose.yml` file to define the services required for my app
 
 - **FileUploadAPI Service:**  
   - Builds from the `Dockerfile`.  
-  - Exposes port `5000` to match my API’s configuration.  
+  - Exposes port `5000` to match the API’s configuration.  
   - Uses an **environment variable** to set the MongoDB connection string.  
-  - `depends_on` ensures MongoDB starts before my API.  
+  - `depends_on` ensures MongoDB starts before the API.  
 
 ---
 
 ### **Step 3: Running the Docker Containers**  
-After setting up everything, I ran my services using:  
+After setting up everything, services were started using:  
 
 ```sh
 docker-compose up --build
@@ -42,11 +43,11 @@ This command:
 
 ---
 
-## **Verifying My API and MongoDB**  
-Once the services were up and running, I checked if everything was working correctly.  
+## **Verifying API and MongoDB**  
+Once the services were up and running, checks were performed to confirm everything was working correctly.  
 
 ### **Checking Running Containers**  
-I ran:  
+The following command was used:  
 ```sh
 docker ps
 ```  
@@ -58,45 +59,44 @@ CONTAINER ID   IMAGE           PORTS                    NAMES
 ```  
 
 ### **Verifying MongoDB Connection Inside Docker**  
-To confirm MongoDB was running properly, I opened a shell inside the MongoDB container:  
+To confirm MongoDB was running properly, a shell was opened inside the MongoDB container using:  
 ```sh
 docker exec -it mongo_container mongosh -u admin -p password
 ```  
-Then, I ran:  
+Then, the following command was executed:  
 ```sh
 show dbs
 ```  
-This showed `FileUploadDB`, meaning my database was set up correctly.  
+The database `FileUploadDB` was listed, confirming the setup was correct.  
 
-### **Accessing Swagger to Test My API**  
-I opened **Swagger UI** in the browser at:  
+### **Accessing Swagger to Test API**  
+Swagger UI was accessed in the browser at:  
 ```
 http://localhost:5000/swagger
 ```  
-This allowed me to test my API endpoints.  
+This allowed testing of the API endpoints.  
 
 ---
 
 ## **Stopping and Cleaning Up Docker**  
-If I needed to stop only the API container, I ran:  
+To stop only the API container, the following command was used:  
 ```sh
 docker stop fileuploadapi_container
 ```  
-To stop all running containers at once, I used:  
+To stop all running containers at once, the following command was executed:  
 ```sh
 docker stop $(docker ps -q)
 ```  
 
 ---
 
-## **Summary of What I Did**  
+## **Summary of Steps**  
 
-| **Step** | **What I Did** |  
+| **Step** | **Action Taken** |  
 |----------|----------------|  
-| 1 | Created a **Dockerfile** to containerize my .NET Web API |  
+| 1 | Created a **Dockerfile** to containerize the .NET Web API |  
 | 2 | Created a **docker-compose.yml** to run MongoDB and the API together |  
 | 3 | Used `docker-compose up --build` to start both services |  
 | 4 | Verified MongoDB connection using `docker exec -it mongo_container mongosh` |  
-| 5 | Accessed my API at `http://localhost:5000/swagger` |  
+| 5 | Accessed API at `http://localhost:5000/swagger` |  
 | 6 | Stopped containers using `docker stop` or `docker-compose down` |  
-
